@@ -15,11 +15,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.labvirtual.configuracion.config;
+import com.example.labvirtual.modelos.usuarios;
 import com.example.labvirtual.retrofit.interfaceRetrofit;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.io.IOException;
+import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -58,19 +60,19 @@ public class login extends AppCompatActivity {
         //Variable para iniciar la petición Retrofit
         interfaceRetrofit peticion = config.getRetrofit().create(interfaceRetrofit.class);
         //Preparar la petición call (llamar)
-        Call<ResponseBody> call = peticion.validar(usuario, password);
+        Call<List<usuarios>> call = peticion.validar(usuario, password);
         //Iniciar la petición con enqueue. el método incluye dos apartados para saber si la petición se llevó con éxito o fracaso
         //onResponse-onFailure
-        call.enqueue(new Callback<ResponseBody>() {
+        call.enqueue(new Callback<List<usuarios>>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            public void onResponse(Call<List<usuarios>> call, Response<List<usuarios>> response) {
                 //En caso de éxito
                 //la variable response es la encargada de almacenar la respuesta del servidor.
-                try {
-                    String respuesta = response.body().string();
 
+                    List <usuarios> users = response.body();
                     //Si la respuesta es correcta se llama al navigation drawer.
-                    if (respuesta.equals("ok")) {
+                 if(users.get(0) != null)
+                    {
                         backProgress.setVisibility(View.GONE);
                         Intent principal = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(principal);
@@ -79,13 +81,10 @@ public class login extends AppCompatActivity {
                         Snackbar msjPersonalizado = Snackbar.make(v, "Usuario o contraseña no válidos", Snackbar.LENGTH_SHORT);
                         msjPersonalizado.show();
                     }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<List<usuarios>> call, Throwable t) {
                 //en caso de fracaso
                 backProgress.setVisibility(View.GONE); //Hacer invisible el layout progress
                 Snackbar msjPersonalizado = Snackbar.make(v, "Servidor inaccesible", Snackbar.LENGTH_SHORT);

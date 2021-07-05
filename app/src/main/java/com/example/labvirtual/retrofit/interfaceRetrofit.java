@@ -32,7 +32,7 @@ public interface interfaceRetrofit {
      */
     @FormUrlEncoded
     @POST("validar") //recordemos que el enrutamiento dentro la API para validar fue definida con el mismo nombre
-    Call<ResponseBody> validar(@Field("usuario") String usuario,
+    Call<List<usuarios>> validar(@Field("usuario") String usuario,
                                @Field("password") String password);
 
     /**

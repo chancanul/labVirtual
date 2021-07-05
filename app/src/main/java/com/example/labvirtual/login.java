@@ -8,6 +8,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -67,6 +68,7 @@ public class login extends AppCompatActivity {
                 //la variable response es la encargada de almacenar la respuesta del servidor.
                 try {
                     String respuesta = response.body().string();
+
                     //Si la respuesta es correcta se llama al navigation drawer.
                     if (respuesta.equals("ok")) {
                         backProgress.setVisibility(View.GONE);

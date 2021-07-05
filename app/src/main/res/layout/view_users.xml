@@ -82,10 +82,5 @@
             android:fontFamily="sans-serif"
             android:textSize="20sp"/>
     </LinearLayout>
-
     </LinearLayout>
-
-
-
-
 </LinearLayout>

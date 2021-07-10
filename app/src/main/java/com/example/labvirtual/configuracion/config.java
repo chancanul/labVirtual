@@ -6,8 +6,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class config {
     //Variable _BASEURL, se encarga de almacenar la dirección ip del servidor o nombre de dominio cuando el host
     //se encuentre en un servidor remoto
-    private static final String _IP_SERVER = "http://192.168.1.72/";
-    private static final String _NOMBRE_PROYECTO = "api-Laravel-AdminLte/";
+    private static final String _IP_SERVER = "http://192.168.1.65/";
+    private static final String _NOMBRE_PROYECTO = "apiLabVirtual/";
     private static final String _URI = "public/api/";
     private static final String _URI_IMAGES = "public/storage/";
     private static final String _BASEURL = _IP_SERVER + _NOMBRE_PROYECTO + _URI;

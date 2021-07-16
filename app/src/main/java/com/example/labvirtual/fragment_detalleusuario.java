@@ -167,12 +167,9 @@ public class fragment_detalleusuario extends Fragment {
         /**
          * Evento clic para abrir la galería
          */
-        imgViewBtnGaleria.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent galeria = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);//Intent para abrir la galería.
-                startActivityForResult(galeria, PICK_IMAGE);
-            }
+        imgViewBtnGaleria.setOnClickListener(v -> {
+            Intent galeria = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);//Intent para abrir la galería.
+            startActivityForResult(galeria, PICK_IMAGE);
         });
 
         fabGuardar.setOnClickListener(new View.OnClickListener() {
